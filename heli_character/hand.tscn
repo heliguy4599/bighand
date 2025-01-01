@@ -13,7 +13,7 @@ height = 66.0
 radius = 44.0114
 
 [node name="Hand" type="RigidBody2D"]
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 mass = 646.0
 gravity_scale = 0.0

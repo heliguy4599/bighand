@@ -1,10 +1,9 @@
 class_name Body
-extends Node2D
+extends RigidBody2D
 
 
 const MAX_EYE_LOOK := 100.0
 const MAX_EYE_MOVEMENT := 8.0
-
 
 @onready var upper_arm_joint: Node2D = $UpperArmJoint
 @onready var lower_arm_joint: Node2D = $UpperArmJoint/LowerArmJoint
@@ -13,6 +12,10 @@ const MAX_EYE_MOVEMENT := 8.0
 @onready var right_eye: Sprite2D = $RightEye
 @onready var left_eye_initial_pos := left_eye.position
 @onready var right_eye_initial_pos := right_eye.position
+
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	state.transform.origin.y = 0
 
 
 func point_to_hand(hand_pos: Vector2):

@@ -7,9 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://rbde5qyrxgnc" path="res://heli_character/eye.png" id="3_dvknr"]
 [ext_resource type="Texture2D" uid="uid://bvly54lldx6qw" path="res://heli_character/lower_arm.png" id="3_gw5vf"]
 
-[node name="Body" type="Node2D"]
+[node name="Body" type="RigidBody2D"]
 z_index = -20
 z_as_relative = false
+collision_layer = 4
+collision_mask = 4
+lock_rotation = true
+linear_damp = 100.0
 script = ExtResource("1_nj2ke")
 
 [node name="Sclera" type="Sprite2D" parent="."]
@@ -48,3 +52,6 @@ position = Vector2(166, 0)
 position = Vector2(92, 4.76837e-07)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("3_gw5vf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-69, -329, 12, -293, 126, -211, 197, -94, 215, 9, 210, 89, 132, 233, 50, 304, -171, 339, -213, 160, -88, 3, -50, -66, -63, -321, -163, -366, -328, 80, -225, 400, 293, 400, 338, 47, 300, -275, 123, -403, -111, -406, -162, -367, -131, -354)
