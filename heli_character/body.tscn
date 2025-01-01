@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bon06v27u8pw"]
+
+[ext_resource type="Texture2D" uid="uid://c86ftx2ogcvre" path="res://heli_character/body.png" id="1_1kc38"]
+[ext_resource type="Script" path="res://heli_character/body.gd" id="1_nj2ke"]
+[ext_resource type="Texture2D" uid="uid://bg31830fq3hwc" path="res://heli_character/scleras.png" id="2_i72cw"]
+[ext_resource type="Texture2D" uid="uid://cluc3844u2igt" path="res://heli_character/upper_arm.png" id="2_pap1g"]
+[ext_resource type="Texture2D" uid="uid://rbde5qyrxgnc" path="res://heli_character/eye.png" id="3_dvknr"]
+[ext_resource type="Texture2D" uid="uid://bvly54lldx6qw" path="res://heli_character/lower_arm.png" id="3_gw5vf"]
+
+[node name="Body" type="Node2D"]
+z_index = -20
+z_as_relative = false
+script = ExtResource("1_nj2ke")
+
+[node name="Sclera" type="Sprite2D" parent="."]
+position = Vector2(40, -140)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_i72cw")
+
+[node name="LeftEye" type="Sprite2D" parent="."]
+position = Vector2(66, -140.45)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("3_dvknr")
+
+[node name="RightEye" type="Sprite2D" parent="."]
+position = Vector2(17, -140.45)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("3_dvknr")
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(1.81899e-12, -1.19209e-07)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_1kc38")
+
+[node name="UpperArmJoint" type="Node2D" parent="."]
+position = Vector2(-112, 18)
+
+[node name="UpperArm" type="Sprite2D" parent="UpperArmJoint"]
+position = Vector2(93, 0.999999)
+rotation = -0.028914
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_pap1g")
+
+[node name="LowerArmJoint" type="Node2D" parent="UpperArmJoint"]
+position = Vector2(166, 0)
+
+[node name="LowerArm" type="Sprite2D" parent="UpperArmJoint/LowerArmJoint"]
+position = Vector2(92, 4.76837e-07)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("3_gw5vf")

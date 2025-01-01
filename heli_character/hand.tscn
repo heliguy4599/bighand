@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://fds8ylsbt2dx"]
+
+[ext_resource type="Script" path="res://heli_character/hand.gd" id="1_l1w56"]
+[ext_resource type="Texture2D" uid="uid://ce3cfx0l6it5e" path="res://heli_character/hand_open_back.png" id="2_w3yjl"]
+[ext_resource type="Texture2D" uid="uid://bp4ll1l0uar0" path="res://heli_character/hand_open_front.png" id="3_ejxsa"]
+[ext_resource type="Texture2D" uid="uid://bomq72tadpmvg" path="res://heli_character/hand_closed_front.png" id="4_hnrjl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hy6vr"]
+radius = 5.0
+height = 66.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rxy4v"]
+radius = 44.0114
+
+[node name="Hand" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 3
+mass = 646.0
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_l1w56")
+
+[node name="HandOpenBack" type="Sprite2D" parent="."]
+z_index = -10
+z_as_relative = false
+position = Vector2(6, 29)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_w3yjl")
+
+[node name="HandOpenFront" type="Sprite2D" parent="."]
+z_index = 10
+z_as_relative = false
+position = Vector2(6, 29)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_ejxsa")
+
+[node name="HandClosedFront" type="Sprite2D" parent="."]
+visible = false
+z_index = 10
+z_as_relative = false
+position = Vector2(6, 29)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_hnrjl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 100
+position = Vector2(2, 0)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_hy6vr")
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+z_index = 100
+position = Vector2(2, 41)
+shape = SubResource("CircleShape2D_rxy4v")
