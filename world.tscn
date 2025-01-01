@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cs0qvu11a4wfu"]
+[gd_scene load_steps=9 format=3 uid="uid://cs0qvu11a4wfu"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_f17ur"]
 [ext_resource type="PackedScene" uid="uid://c76qocaeg0e5m" path="res://pickupable.tscn" id="2_nr6n1"]
-[ext_resource type="PackedScene" uid="uid://fds8ylsbt2dx" path="res://hand.tscn" id="3_pgtt6"]
+[ext_resource type="PackedScene" uid="uid://fds8ylsbt2dx" path="res://heli_character/hand.tscn" id="3_pgtt6"]
+[ext_resource type="PackedScene" uid="uid://bon06v27u8pw" path="res://heli_character/body.tscn" id="3_rnry5"]
 [ext_resource type="PackedScene" uid="uid://dx2mxd7ig3v4h" path="res://bridge_pillar.tscn" id="4_nswid"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_16fl1"]
-size = Vector2(5767, 128)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nu5gv"]
+friction = 0.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vbkwr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_11jc7"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_f17ur")
@@ -15,14 +20,27 @@ script = ExtResource("1_f17ur")
 
 [node name="Camera2D" type="Camera2D" parent="ViewScroller"]
 
-[node name="Floor" type="StaticBody2D" parent="ViewScroller"]
-position = Vector2(-1371, 260)
+[node name="Hand" parent="." node_paths=PackedStringArray("body") instance=ExtResource("3_pgtt6")]
+position = Vector2(41, 48)
+body = NodePath("../Body")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewScroller/Floor"]
-shape = SubResource("RectangleShape2D_16fl1")
+[node name="Body" parent="." instance=ExtResource("3_rnry5")]
 
-[node name="Hand" parent="." instance=ExtResource("3_pgtt6")]
-position = Vector2(429, -186)
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2(0, -292)
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_nu5gv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_vbkwr")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 247)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_11jc7")
 
 [node name="Pickupable" parent="." instance=ExtResource("2_nr6n1")]
 position = Vector2(-238, 110)
