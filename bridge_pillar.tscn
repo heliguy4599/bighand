@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx2mxd7ig3v4h"]
+
+[ext_resource type="Script" path="res://pickupable.gd" id="1_vnsm7"]
+[ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="2_4io2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t76f"]
+size = Vector2(330, 674)
+
+[node name="BridgePillar" type="RigidBody2D"]
+script = ExtResource("1_vnsm7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6t76f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.57812, 5.26562)
+texture = ExtResource("2_4io2v")

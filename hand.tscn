@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://fds8ylsbt2dx"]
+
+[ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="1_c3wvk"]
+[ext_resource type="Script" path="res://hand.gd" id="1_l1w56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0d71"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p61g7"]
+size = Vector2(128, 128)
+
+[node name="Hand" type="RigidBody2D"]
+mass = 646.0
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_l1w56")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c3wvk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x0d71")
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(0, 94)
+shape = SubResource("RectangleShape2D_p61g7")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs0qvu11a4wfu"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_f17ur"]
+[ext_resource type="PackedScene" uid="uid://c76qocaeg0e5m" path="res://pickupable.tscn" id="2_nr6n1"]
+[ext_resource type="PackedScene" uid="uid://fds8ylsbt2dx" path="res://hand.tscn" id="3_pgtt6"]
+[ext_resource type="PackedScene" uid="uid://dx2mxd7ig3v4h" path="res://bridge_pillar.tscn" id="4_nswid"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16fl1"]
+size = Vector2(5767, 128)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_f17ur")
+
+[node name="ViewScroller" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="ViewScroller"]
+
+[node name="Floor" type="StaticBody2D" parent="ViewScroller"]
+position = Vector2(-1371, 260)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewScroller/Floor"]
+shape = SubResource("RectangleShape2D_16fl1")
+
+[node name="Hand" parent="." instance=ExtResource("3_pgtt6")]
+position = Vector2(429, -186)
+
+[node name="Pickupable" parent="." instance=ExtResource("2_nr6n1")]
+position = Vector2(-238, 110)
+freeze_mode = 1
+
+[node name="Pickupable2" parent="." instance=ExtResource("2_nr6n1")]
+position = Vector2(-87, 97)
+
+[node name="Pickupable3" parent="." instance=ExtResource("2_nr6n1")]
+position = Vector2(-161, -60)
+
+[node name="BridgePillar" parent="." instance=ExtResource("4_nswid")]
+position = Vector2(-175, -838)
