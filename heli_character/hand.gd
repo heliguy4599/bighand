@@ -50,9 +50,9 @@ func grab():
 	if bodies.is_empty():
 		return
 
-	for body in bodies:
-		if body is Pickupable:
-			grabbed_object = body
+	for _body in bodies:
+		if _body is Pickupable:
+			grabbed_object = _body
 			grabbed_object.grab(self)
 			set_visual_grab(true)
 			return

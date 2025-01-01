@@ -5,17 +5,28 @@ extends RigidBody2D
 const MAX_EYE_LOOK := 100.0
 const MAX_EYE_MOVEMENT := 8.0
 
-@onready var upper_arm_joint: Node2D = $UpperArmJoint
-@onready var lower_arm_joint: Node2D = $UpperArmJoint/LowerArmJoint
+@onready var upper_arm_joint: Node2D = $Visuals/UpperArmJoint
+@onready var lower_arm_joint: Node2D = $Visuals/UpperArmJoint/LowerArmJoint
 @onready var section_length := (lower_arm_joint.global_position - upper_arm_joint.global_position).length()
-@onready var left_eye: Sprite2D = $LeftEye
-@onready var right_eye: Sprite2D = $RightEye
+@onready var left_eye: Sprite2D = $Visuals/LeftEye
+@onready var right_eye: Sprite2D = $Visuals/RightEye
 @onready var left_eye_initial_pos := left_eye.position
 @onready var right_eye_initial_pos := right_eye.position
+@onready var bobbing_player = $BobbingPlayer
+@onready var previous_x := global_position.x
+
+var is_character_moving: bool:
+	set(value):
+		is_character_moving = value
+		if value:
+			bobbing_player.play(&"bobbing")
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	state.transform.origin.y = 0
+	var new_x = state.transform.origin.x
+	is_character_moving = absf((new_x - previous_x) / state.step) > (Hand.SPEED * 0.1)
+	previous_x = new_x
 
 
 func point_to_hand(hand_pos: Vector2):

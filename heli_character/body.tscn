@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bon06v27u8pw"]
+[gd_scene load_steps=10 format=3 uid="uid://bon06v27u8pw"]
 
 [ext_resource type="Texture2D" uid="uid://c86ftx2ogcvre" path="res://heli_character/body.png" id="1_1kc38"]
 [ext_resource type="Script" path="res://heli_character/body.gd" id="1_nj2ke"]
@@ -6,6 +6,42 @@
 [ext_resource type="Texture2D" uid="uid://cluc3844u2igt" path="res://heli_character/upper_arm.png" id="2_pap1g"]
 [ext_resource type="Texture2D" uid="uid://rbde5qyrxgnc" path="res://heli_character/eye.png" id="3_dvknr"]
 [ext_resource type="Texture2D" uid="uid://bvly54lldx6qw" path="res://heli_character/lower_arm.png" id="3_gw5vf"]
+
+[sub_resource type="Animation" id="Animation_103k7"]
+resource_name = "bobbing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_83brs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38760"]
+_data = {
+"RESET": SubResource("Animation_83brs"),
+"bobbing": SubResource("Animation_103k7")
+}
 
 [node name="Body" type="RigidBody2D"]
 z_index = -20
@@ -16,42 +52,49 @@ lock_rotation = true
 linear_damp = 100.0
 script = ExtResource("1_nj2ke")
 
-[node name="Sclera" type="Sprite2D" parent="."]
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sclera" type="Sprite2D" parent="Visuals"]
 position = Vector2(40, -140)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_i72cw")
 
-[node name="LeftEye" type="Sprite2D" parent="."]
+[node name="LeftEye" type="Sprite2D" parent="Visuals"]
 position = Vector2(66, -140.45)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("3_dvknr")
 
-[node name="RightEye" type="Sprite2D" parent="."]
+[node name="RightEye" type="Sprite2D" parent="Visuals"]
 position = Vector2(17, -140.45)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("3_dvknr")
 
-[node name="Body" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="Visuals"]
 position = Vector2(1.81899e-12, -1.19209e-07)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("1_1kc38")
 
-[node name="UpperArmJoint" type="Node2D" parent="."]
+[node name="UpperArmJoint" type="Node2D" parent="Visuals"]
 position = Vector2(-112, 18)
 
-[node name="UpperArm" type="Sprite2D" parent="UpperArmJoint"]
+[node name="UpperArm" type="Sprite2D" parent="Visuals/UpperArmJoint"]
 position = Vector2(93, 0.999999)
 rotation = -0.028914
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_pap1g")
 
-[node name="LowerArmJoint" type="Node2D" parent="UpperArmJoint"]
+[node name="LowerArmJoint" type="Node2D" parent="Visuals/UpperArmJoint"]
 position = Vector2(166, 0)
 
-[node name="LowerArm" type="Sprite2D" parent="UpperArmJoint/LowerArmJoint"]
+[node name="LowerArm" type="Sprite2D" parent="Visuals/UpperArmJoint/LowerArmJoint"]
 position = Vector2(92, 4.76837e-07)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("3_gw5vf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-69, -329, 12, -293, 126, -211, 197, -94, 215, 9, 210, 89, 132, 233, 50, 304, -171, 339, -213, 160, -88, 3, -50, -66, -63, -321, -163, -366, -328, 80, -225, 400, 293, 400, 338, 47, 300, -275, 123, -403, -111, -406, -162, -367, -131, -354)
+polygon = PackedVector2Array(-69, -329, 12, -293, 126, -211, 204, -93, 231, 10, 211, 94, 132, 233, 50, 304, -171, 339, -213, 160, -88, 3, -50, -66, -63, -321, -163, -366, -328, 80, -225, 400, 293, 400, 338, 47, 300, -275, 123, -403, -111, -406, -162, -367, -131, -354)
+
+[node name="BobbingPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_38760")
+}

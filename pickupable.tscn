@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c76qocaeg0e5m"]
+[gd_scene load_steps=4 format=3 uid="uid://byaloyj4tofki"]
 
 [ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="1_6onfl"]
 [ext_resource type="Script" path="res://pickupable.gd" id="1_ths0g"]
@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvsxc"]
 size = Vector2(128, 128)
 
-[node name="Pickupable" type="RigidBody2D"]
+[node name="RigidBody2D" type="RigidBody2D"]
 mass = 100.0
 can_sleep = false
 script = ExtResource("1_ths0g")

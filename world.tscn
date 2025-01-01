@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cs0qvu11a4wfu"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_f17ur"]
-[ext_resource type="PackedScene" uid="uid://c76qocaeg0e5m" path="res://pickupable.tscn" id="2_nr6n1"]
 [ext_resource type="PackedScene" uid="uid://fds8ylsbt2dx" path="res://heli_character/hand.tscn" id="3_pgtt6"]
 [ext_resource type="PackedScene" uid="uid://bon06v27u8pw" path="res://heli_character/body.tscn" id="3_rnry5"]
+[ext_resource type="PackedScene" uid="uid://cfc0x53i3ha6c" path="res://car.tscn" id="5_fwhi6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nu5gv"]
 friction = 0.0
@@ -41,12 +41,5 @@ position = Vector2(0, 247)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_11jc7")
 
-[node name="Pickupable" parent="." instance=ExtResource("2_nr6n1")]
-position = Vector2(-481, -11)
-freeze_mode = 1
-
-[node name="Pickupable2" parent="." instance=ExtResource("2_nr6n1")]
-position = Vector2(-330, -24)
-
-[node name="Pickupable3" parent="." instance=ExtResource("2_nr6n1")]
-position = Vector2(-404, -181)
+[node name="Car" parent="." instance=ExtResource("5_fwhi6")]
+position = Vector2(-497, 123)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfc0x53i3ha6c"]
+
+[ext_resource type="Script" path="res://car.gd" id="1_ioxu0"]
+[ext_resource type="Texture2D" uid="uid://b5igvysjllbfj" path="res://dacar.png" id="2_1s6m6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_38lyy"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ap25v"]
+radius = 55.0
+height = 342.0
+
+[node name="Car" type="RigidBody2D"]
+mass = 90.0
+physics_material_override = SubResource("PhysicsMaterial_38lyy")
+contact_monitor = true
+max_contacts_reported = 999
+script = ExtResource("1_ioxu0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -0.0151993
+texture = ExtResource("2_1s6m6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 11)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_ap25v")
