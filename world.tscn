@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs0qvu11a4wfu"]
+[gd_scene load_steps=10 format=3 uid="uid://cs0qvu11a4wfu"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_f17ur"]
 [ext_resource type="PackedScene" uid="uid://fds8ylsbt2dx" path="res://heli_character/hand.tscn" id="3_pgtt6"]
 [ext_resource type="PackedScene" uid="uid://bon06v27u8pw" path="res://heli_character/body.tscn" id="3_rnry5"]
 [ext_resource type="PackedScene" uid="uid://cfc0x53i3ha6c" path="res://car.tscn" id="5_fwhi6"]
+[ext_resource type="PackedScene" uid="uid://cbiik6l566bul" path="res://bridge_structure.tscn" id="5_xk8r5"]
+[ext_resource type="PackedScene" uid="uid://c5cvaxi1udh2j" path="res://bridge_deck.tscn" id="6_qeoyx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nu5gv"]
 friction = 0.0
@@ -18,12 +20,17 @@ script = ExtResource("1_f17ur")
 [node name="ViewScroller" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="ViewScroller"]
+position = Vector2(382, 0)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
 
 [node name="Hand" parent="." node_paths=PackedStringArray("body") instance=ExtResource("3_pgtt6")]
-position = Vector2(41, 48)
+position = Vector2(491, 48)
 body = NodePath("../Body")
 
 [node name="Body" parent="." instance=ExtResource("3_rnry5")]
+position = Vector2(367, 0)
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
 position = Vector2(0, -292)
@@ -37,9 +44,18 @@ shape = SubResource("WorldBoundaryShape2D_vbkwr")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, 247)
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_11jc7")
 
 [node name="Car" parent="." instance=ExtResource("5_fwhi6")]
-position = Vector2(-497, 123)
+z_index = 1
+position = Vector2(-236, 113)
+
+[node name="BridgeStructure" parent="." instance=ExtResource("5_xk8r5")]
+position = Vector2(388, -55)
+
+[node name="BridgeDeck" parent="." instance=ExtResource("6_qeoyx")]
+position = Vector2(316, 116)

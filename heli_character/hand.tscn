@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://fds8ylsbt2dx"]
+[gd_scene load_steps=8 format=3 uid="uid://fds8ylsbt2dx"]
 
 [ext_resource type="Script" path="res://heli_character/hand.gd" id="1_l1w56"]
 [ext_resource type="Texture2D" uid="uid://ce3cfx0l6it5e" path="res://heli_character/hand_open_back.png" id="2_w3yjl"]
 [ext_resource type="Texture2D" uid="uid://bp4ll1l0uar0" path="res://heli_character/hand_open_front.png" id="3_ejxsa"]
 [ext_resource type="Texture2D" uid="uid://bomq72tadpmvg" path="res://heli_character/hand_closed_front.png" id="4_hnrjl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gn6bq"]
+friction = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hy6vr"]
 radius = 5.0
@@ -13,9 +16,10 @@ height = 66.0
 radius = 44.0114
 
 [node name="Hand" type="RigidBody2D"]
-collision_layer = 7
-collision_mask = 3
+collision_layer = 15
+collision_mask = 11
 mass = 646.0
+physics_material_override = SubResource("PhysicsMaterial_gn6bq")
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_l1w56")
@@ -50,6 +54,7 @@ shape = SubResource("CapsuleShape2D_hy6vr")
 
 [node name="PickupArea" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 z_index = 100

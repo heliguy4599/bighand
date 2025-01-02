@@ -11,6 +11,7 @@ const GRABBING_RANGE := 200.0
 
 
 var grabbed_object: Pickupable = null
+var to_be_grabbed: Pickupable = null
 var is_visually_grabbed := false
 
 
@@ -40,25 +41,35 @@ func _physics_process(delta: float) -> void:
 	var desired_speed := input * SPEED
 	apply_central_force((desired_speed - linear_velocity) * ACCEL * mass)
 	body.point_to_hand(global_position)
+	if to_be_grabbed != null:
+		to_be_grabbed.modulate = Color.WHITE
+	to_be_grabbed = determine_grabbable_object()
 
 
-func grab():
+func determine_grabbable_object() -> Pickupable:
 	if grabbed_object != null or is_visually_grabbed:
-		return
+		return null
 
 	var bodies := pickup_area.get_overlapping_bodies()
 	if bodies.is_empty():
-		return
+		return null
 
 	for _body in bodies:
 		if _body is Pickupable:
-			grabbed_object = _body
-			grabbed_object.grab(self)
-			set_visual_grab(true)
-			return
-	
+			_body.modulate = Color(1, 0.621, 0.621)
+			return _body
 
-	grab_and_miss()
+	return null
+
+
+func grab():
+	if to_be_grabbed == null:
+		grab_and_miss()
+		return
+
+	grabbed_object = to_be_grabbed
+	to_be_grabbed.grab(self)
+	set_visual_grab(true)
 
 
 func ungrab():

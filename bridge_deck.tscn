@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5cvaxi1udh2j"]
+
+[ext_resource type="Script" path="res://pickupable.gd" id="1_3cgc5"]
+[ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="2_f7ar6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rh46h"]
+size = Vector2(290, 20)
+
+[node name="BridgeDeck" type="RigidBody2D"]
+collision_layer = 9
+collision_mask = 9
+mass = 300.0
+script = ExtResource("1_3cgc5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rh46h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.26562, 0.15625)
+texture = ExtResource("2_f7ar6")
