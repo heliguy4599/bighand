@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfc0x53i3ha6c"]
 
-[ext_resource type="Script" path="res://car.gd" id="1_ioxu0"]
+[ext_resource type="Script" uid="uid://ym7gtrrap55s" path="res://car.gd" id="1_ioxu0"]
 [ext_resource type="Texture2D" uid="uid://b5igvysjllbfj" path="res://dacar.png" id="2_1s6m6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_38lyy"]

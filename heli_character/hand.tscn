@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://fds8ylsbt2dx"]
 
-[ext_resource type="Script" path="res://heli_character/hand.gd" id="1_l1w56"]
+[ext_resource type="Script" uid="uid://02bdj0ps2q6c" path="res://heli_character/hand.gd" id="1_l1w56"]
 [ext_resource type="Texture2D" uid="uid://ce3cfx0l6it5e" path="res://heli_character/hand_open_back.png" id="2_w3yjl"]
 [ext_resource type="Texture2D" uid="uid://bp4ll1l0uar0" path="res://heli_character/hand_open_front.png" id="3_ejxsa"]
 [ext_resource type="Texture2D" uid="uid://bomq72tadpmvg" path="res://heli_character/hand_closed_front.png" id="4_hnrjl"]

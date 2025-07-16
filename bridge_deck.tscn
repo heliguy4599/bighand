@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c5cvaxi1udh2j"]
 
-[ext_resource type="Script" path="res://pickupable.gd" id="1_3cgc5"]
+[ext_resource type="Script" uid="uid://dndpmlen81kuq" path="res://pickupable.gd" id="1_3cgc5"]
 [ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="2_f7ar6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rh46h"]

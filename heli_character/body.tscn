@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bon06v27u8pw"]
 
 [ext_resource type="Texture2D" uid="uid://c86ftx2ogcvre" path="res://heli_character/body.png" id="1_1kc38"]
-[ext_resource type="Script" path="res://heli_character/body.gd" id="1_nj2ke"]
+[ext_resource type="Script" uid="uid://du355td5p55r1" path="res://heli_character/body.gd" id="1_nj2ke"]
 [ext_resource type="Texture2D" uid="uid://bg31830fq3hwc" path="res://heli_character/scleras.png" id="2_i72cw"]
 [ext_resource type="Texture2D" uid="uid://cluc3844u2igt" path="res://heli_character/upper_arm.png" id="2_pap1g"]
 [ext_resource type="Texture2D" uid="uid://rbde5qyrxgnc" path="res://heli_character/eye.png" id="3_dvknr"]
@@ -39,8 +39,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_38760"]
 _data = {
-"RESET": SubResource("Animation_83brs"),
-"bobbing": SubResource("Animation_103k7")
+&"RESET": SubResource("Animation_83brs"),
+&"bobbing": SubResource("Animation_103k7")
 }
 
 [node name="Body" type="RigidBody2D"]
