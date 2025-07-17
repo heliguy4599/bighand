@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://fds8ylsbt2dx"]
+[gd_scene load_steps=14 format=3 uid="uid://fds8ylsbt2dx"]
 
 [ext_resource type="Script" uid="uid://02bdj0ps2q6c" path="res://heli_character/hand.gd" id="1_l1w56"]
 [ext_resource type="Texture2D" uid="uid://ce3cfx0l6it5e" path="res://heli_character/hand_open_back.png" id="2_w3yjl"]
@@ -10,15 +10,33 @@ friction = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hy6vr"]
 radius = 5.0
-height = 66.0
+height = 86.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rxy4v"]
-radius = 44.0114
+[sub_resource type="CircleShape2D" id="CircleShape2D_iybpy"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fmmoc"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gh4fe"]
+radius = 19.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0gdkt"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdb46"]
+radius = 29.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tlu1t"]
+radius = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ygwjo"]
+radius = 39.0
 
 [node name="Hand" type="RigidBody2D"]
 collision_layer = 15
 collision_mask = 11
-mass = 646.0
+mass = 2500.0
 physics_material_override = SubResource("PhysicsMaterial_gn6bq")
 gravity_scale = 0.0
 lock_rotation = true
@@ -52,11 +70,77 @@ position = Vector2(2, 0)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_hy6vr")
 
-[node name="PickupArea" type="Area2D" parent="."]
+[node name="PickupAreaGroup" type="Node2D" parent="."]
+
+[node name="PickupArea8" type="Area2D" parent="PickupAreaGroup"]
 collision_layer = 0
 collision_mask = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupAreaGroup/PickupArea8"]
 z_index = 100
-position = Vector2(2, 41)
-shape = SubResource("CircleShape2D_rxy4v")
+position = Vector2(2, 6)
+shape = SubResource("CircleShape2D_iybpy")
+
+[node name="PickupArea7" type="Area2D" parent="PickupAreaGroup"]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupAreaGroup/PickupArea7"]
+z_index = 100
+position = Vector2(2, 11)
+shape = SubResource("CircleShape2D_fmmoc")
+
+[node name="PickupArea6" type="Area2D" parent="PickupAreaGroup"]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupAreaGroup/PickupArea6"]
+z_index = 100
+position = Vector2(2, 16)
+shape = SubResource("CircleShape2D_gh4fe")
+
+[node name="PickupArea5" type="Area2D" parent="PickupAreaGroup"]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupAreaGroup/PickupArea5"]
+z_index = 100
+position = Vector2(2, 21)
+shape = SubResource("CircleShape2D_0gdkt")
+
+[node name="PickupArea4" type="Area2D" parent="PickupAreaGroup"]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupAreaGroup/PickupArea4"]
+z_index = 100
+position = Vector2(2, 26)
+shape = SubResource("CircleShape2D_tdb46")
+
+[node name="PickupArea3" type="Area2D" parent="PickupAreaGroup"]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupAreaGroup/PickupArea3"]
+z_index = 100
+position = Vector2(2, 31)
+shape = SubResource("CircleShape2D_tlu1t")
+
+[node name="PickupArea2" type="Area2D" parent="PickupAreaGroup"]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupAreaGroup/PickupArea2"]
+z_index = 100
+position = Vector2(2, 36)
+shape = SubResource("CircleShape2D_ygwjo")
+
+[node name="PinJoint2DLeft" type="PinJoint2D" parent="."]
+position = Vector2(-41, 0)
+node_a = NodePath("..")
+node_b = NodePath("..")
+
+[node name="PinJoint2DRight" type="PinJoint2D" parent="."]
+position = Vector2(45, 0)
+node_a = NodePath("..")
+node_b = NodePath("..")

@@ -11,6 +11,7 @@
 friction = 0.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vbkwr"]
+normal = Vector2(2.53518e-06, -1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_11jc7"]
 
@@ -33,7 +34,7 @@ body = NodePath("../Body")
 position = Vector2(367, 0)
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
-position = Vector2(0, -292)
+position = Vector2(0, -261)
 collision_layer = 2
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_nu5gv")
@@ -54,8 +55,11 @@ shape = SubResource("WorldBoundaryShape2D_11jc7")
 z_index = 1
 position = Vector2(-236, 113)
 
+[node name="BridgeStructure2" parent="." instance=ExtResource("5_xk8r5")]
+position = Vector2(788, -10)
+
 [node name="BridgeStructure" parent="." instance=ExtResource("5_xk8r5")]
-position = Vector2(388, -55)
+position = Vector2(657, -2)
 
 [node name="BridgeDeck" parent="." instance=ExtResource("6_qeoyx")]
 position = Vector2(316, 116)

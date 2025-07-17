@@ -96,5 +96,5 @@ polygon = PackedVector2Array(-69, -329, 12, -293, 126, -211, 204, -93, 231, 10, 
 
 [node name="BobbingPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_38760")
+&"": SubResource("AnimationLibrary_38760")
 }

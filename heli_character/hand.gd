@@ -15,14 +15,16 @@ var to_be_grabbed: Pickupable = null
 var is_visually_grabbed := false
 
 
-@onready var pickup_area: Area2D = $PickupArea
+@onready var pickup_area_group: Node2D = $PickupAreaGroup
+@onready var laregest_pickup_area: Area2D = $PickupAreaGroup/PickupArea2
 @onready var hand_open_back: Sprite2D = $HandOpenBack
 @onready var hand_open_front: Sprite2D = $HandOpenFront
 @onready var hand_closed_front: Sprite2D = $HandClosedFront
+@onready var joints: Array[PinJoint2D] = [$PinJoint2DLeft, $PinJoint2DRight]
 
 
 func _ready() -> void:
-	pickup_area.body_exited.connect(func(body):
+	laregest_pickup_area.body_exited.connect(func(body):
 		if body == grabbed_object:
 			ungrab()
 	)
@@ -39,7 +41,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var desired_speed := input * SPEED
-	apply_central_force((desired_speed - linear_velocity) * ACCEL * mass)
+	var effective_mass := mass
+	if grabbed_object != null:
+		effective_mass += grabbed_object.mass
+	apply_central_force((desired_speed - linear_velocity) * ACCEL * effective_mass)
 	body.point_to_hand(global_position)
 	if to_be_grabbed != null:
 		to_be_grabbed.modulate = Color.WHITE
@@ -50,14 +55,20 @@ func determine_grabbable_object() -> Pickupable:
 	if grabbed_object != null or is_visually_grabbed:
 		return null
 
-	var bodies := pickup_area.get_overlapping_bodies()
-	if bodies.is_empty():
-		return null
+	#var bodies := pickup_area.get_overlapping_bodies()
+	var pickup_areas := pickup_area_group.get_children()
+	for area in pickup_areas:
+		if area is Area2D:
+			var bodies: Array[Node2D] = area.get_overlapping_bodies()
+			if bodies.is_empty():
+				continue
 
-	for _body in bodies:
-		if _body is Pickupable:
-			_body.modulate = Color(1, 0.621, 0.621)
-			return _body
+			for body in bodies:
+				if not body is Pickupable:
+					continue
+
+				body.modulate = Color(1, 0.621, 0.621)
+				return body
 
 	return null
 
@@ -68,7 +79,11 @@ func grab():
 		return
 
 	grabbed_object = to_be_grabbed
-	to_be_grabbed.grab(self)
+	grabbed_object.gravity_scale = 0.0
+	for joint in joints:
+		joint.node_b = grabbed_object.get_path()
+
+	to_be_grabbed.grab()
 	set_visual_grab(true)
 
 
@@ -76,9 +91,12 @@ func ungrab():
 	if grabbed_object == null:
 		return
 
-	grabbed_object.ungrab()
-	grabbed_object = null
+	for joint in joints:
+		joint.node_b = get_path()
 
+	grabbed_object.ungrab()
+	grabbed_object.gravity_scale = 1.0
+	grabbed_object = null
 	set_visual_grab(false)
 
 

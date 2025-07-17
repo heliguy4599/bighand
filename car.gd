@@ -8,11 +8,8 @@ var on_ground := false
 
 func _ready() -> void:
 	body_entered.connect(func(body: Node):
-		if not speed < 0:
-			if body is Hand:
-				on_hand_collision()
-			elif body is Pickupable and body.hand != null:
-				on_hand_collision()
+		if not speed < 0 and body is Hand:
+			on_hand_collision()
 	)
 
 
@@ -26,7 +23,6 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	super._physics_process(delta)
 	if on_ground:
 		if linear_velocity.x > speed:
 			apply_central_force(Vector2(-ACCEL * mass, 0))
