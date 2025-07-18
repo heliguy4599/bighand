@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1s3wnnp4k0f0"]
+
+[ext_resource type="Script" uid="uid://d1hk2puiyhcrf" path="res://car_spawn_area.gd" id="1_xetrm"]
+
+[node name="CarSpawnArea" type="Area2D"]
+script = ExtResource("1_xetrm")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

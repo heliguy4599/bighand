@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://druogfrh0kf5n"]
+[gd_scene load_steps=12 format=3 uid="uid://druogfrh0kf5n"]
 
 [ext_resource type="PackedScene" uid="uid://cs0qvu11a4wfu" path="res://player_container.tscn" id="1_sjb42"]
 [ext_resource type="Script" uid="uid://bvfluqud2dj8q" path="res://levels/level_1.gd" id="1_ua5ty"]
 [ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="2_pdtm5"]
+[ext_resource type="PackedScene" uid="uid://b1s3wnnp4k0f0" path="res://car_spawn_area.tscn" id="4_ua5ty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjb42"]
 size = Vector2(678, 305)
@@ -20,8 +21,8 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3oru"]
 size = Vector2(308, 238)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua5ty"]
-size = Vector2(676, 236)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61w3m"]
+size = Vector2(678, 158)
 
 [node name="Level1" type="StaticBody2D"]
 script = ExtResource("1_ua5ty")
@@ -66,15 +67,12 @@ position = Vector2(1030, -146)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarWinArea"]
 shape = SubResource("RectangleShape2D_b3oru")
 
-[node name="CarSpawnArea" type="Area2D" parent="."]
-position = Vector2(-708, -77)
+[node name="CarSpawnArea" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("4_ua5ty")]
+position = Vector2(-707, -38)
+marker = NodePath("Marker2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarSpawnArea"]
-shape = SubResource("RectangleShape2D_ua5ty")
+shape = SubResource("RectangleShape2D_61w3m")
 
-[node name="CarSpawnMarker" type="Marker2D" parent="CarSpawnArea"]
-position = Vector2(-248, 118)
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
+[node name="Marker2D" type="Marker2D" parent="CarSpawnArea"]
+position = Vector2(-254, 79)
