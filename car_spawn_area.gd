@@ -20,6 +20,5 @@ func _ready() -> void:
 
 func spawn_car() -> void:
 	var car = CAR_SCENE.instantiate()
-	print(car.position)
-	car.global_position = marker.global_position if marker != null else global_position
+	car.position = marker.position if marker != null else position
 	(marker.add_sibling if marker != null else add_sibling).call(car)
