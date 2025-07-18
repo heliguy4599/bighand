@@ -44,10 +44,12 @@ func _physics_process(delta: float) -> void:
 	var effective_mass := mass
 	if grabbed_object != null:
 		effective_mass += grabbed_object.mass
+
 	apply_central_force((desired_speed - linear_velocity) * ACCEL * effective_mass)
 	body.point_to_hand(global_position)
 	if to_be_grabbed != null:
 		to_be_grabbed.modulate = Color.WHITE
+
 	to_be_grabbed = determine_grabbable_object()
 
 
@@ -55,20 +57,18 @@ func determine_grabbable_object() -> Pickupable:
 	if grabbed_object != null or is_visually_grabbed:
 		return null
 
-	#var bodies := pickup_area.get_overlapping_bodies()
 	var pickup_areas := pickup_area_group.get_children()
-	for area in pickup_areas:
-		if area is Area2D:
-			var bodies: Array[Node2D] = area.get_overlapping_bodies()
-			if bodies.is_empty():
+	for area: Area2D in pickup_areas:
+		var bodies: Array[Node2D] = area.get_overlapping_bodies()
+		if bodies.is_empty():
+			continue
+
+		for body in bodies:
+			if not body is Pickupable:
 				continue
 
-			for body in bodies:
-				if not body is Pickupable:
-					continue
-
-				body.modulate = Color(1, 0.621, 0.621)
-				return body
+			body.modulate = Color(1, 0.621, 0.621)
+			return body
 
 	return null
 

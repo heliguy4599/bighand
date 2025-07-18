@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://druogfrh0kf5n"]
+
+[ext_resource type="PackedScene" uid="uid://cs0qvu11a4wfu" path="res://player_container.tscn" id="1_sjb42"]
+[ext_resource type="Script" uid="uid://bvfluqud2dj8q" path="res://levels/level_1.gd" id="1_ua5ty"]
+[ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="2_pdtm5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjb42"]
+size = Vector2(678, 305)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdtm5"]
+size = Vector2(678, 306)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b3oru"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pdtm5"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b3oru"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3oru"]
+size = Vector2(308, 238)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua5ty"]
+size = Vector2(676, 236)
+
+[node name="Level1" type="StaticBody2D"]
+script = ExtResource("1_ua5ty")
+
+[node name="PlayerContainer" parent="." instance=ExtResource("1_sjb42")]
+enable_camera_movement = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-708, 194)
+shape = SubResource("RectangleShape2D_sjb42")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(0.499993, 7.62939e-06)
+scale = Vector2(5.28906, 2.38281)
+texture = ExtResource("2_pdtm5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(685, 126)
+shape = SubResource("RectangleShape2D_pdtm5")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D2"]
+scale = Vector2(5.29688, 2.39062)
+texture = SubResource("CompressedTexture2D_b3oru")
+
+[node name="HandWorldEdges" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HandWorldEdges"]
+position = Vector2(584, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_pdtm5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HandWorldEdges"]
+position = Vector2(-584, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_b3oru")
+
+[node name="CarWinArea" type="Area2D" parent="."]
+position = Vector2(1030, -146)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarWinArea"]
+shape = SubResource("RectangleShape2D_b3oru")
+
+[node name="CarSpawnArea" type="Area2D" parent="."]
+position = Vector2(-708, -77)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarSpawnArea"]
+shape = SubResource("RectangleShape2D_ua5ty")
+
+[node name="CarSpawnMarker" type="Marker2D" parent="CarSpawnArea"]
+position = Vector2(-248, 118)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

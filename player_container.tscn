@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cs0qvu11a4wfu"]
+
+[ext_resource type="Script" uid="uid://df48a0ltysie" path="res://player_container.gd" id="1_5ef71"]
+[ext_resource type="PackedScene" uid="uid://fds8ylsbt2dx" path="res://heli_character/hand.tscn" id="2_16t8g"]
+[ext_resource type="PackedScene" uid="uid://bon06v27u8pw" path="res://heli_character/body.tscn" id="3_5so13"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nu5gv"]
+friction = 0.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vbkwr"]
+normal = Vector2(2.53518e-06, -1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_11jc7"]
+
+[node name="PlayerContainer" type="Node2D"]
+script = ExtResource("1_5ef71")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_speed = 2.0
+
+[node name="Hand" parent="." node_paths=PackedStringArray("body") instance=ExtResource("2_16t8g")]
+body = NodePath("../Body")
+
+[node name="Body" parent="." instance=ExtResource("3_5so13")]
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2(0, -261)
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_nu5gv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_vbkwr")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 247)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_11jc7")
