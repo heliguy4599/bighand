@@ -2,7 +2,7 @@ class_name Car
 extends Pickupable
 
 @export var accel := 500.0
-@export var speed := 100.0
+@export var speed := 300.0
 
 var on_ground := false
 

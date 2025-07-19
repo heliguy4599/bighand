@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://dreubwxs62ntr"]
+
+[ext_resource type="Script" uid="uid://4i6djrk8l0nf" path="res://win_screen.gd" id="1_l2arl"]
+
+[node name="WinScreen" type="CanvasLayer"]
+script = ExtResource("1_l2arl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -25.0
+offset_right = 63.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Your win!"
+horizontal_alignment = 1
+
+[node name="cars_saved_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "CARS_SAVED"
+horizontal_alignment = 1
+
+[node name="cars_lost_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "CARS_LOST"
+horizontal_alignment = 1
