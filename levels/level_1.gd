@@ -1,7 +1,7 @@
 class_name Level1
 extends StaticBody2D
 
-const TOTAL_CARS := 3
+const TOTAL_CARS := 100
 
 @onready var car_win_area: Area2D = $CarWinArea
 @onready var car_spawn_area: CarSpawnArea = $CarSpawnArea

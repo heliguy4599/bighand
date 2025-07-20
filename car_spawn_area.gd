@@ -31,6 +31,9 @@ func spawn_car(override_total = false) -> void:
 		return
 
 	total_cars_spawned += 1
-	var car = CAR_SCENE.instantiate()
-	car.global_position = marker.global_position if marker != null else global_position
+	var car: Car = CAR_SCENE.instantiate()
+	car.hide()
 	add_sibling(car)
+	car.global_position = marker.global_position if marker != null else global_position
+	await get_tree().physics_frame
+	car.show()
