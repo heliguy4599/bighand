@@ -13,7 +13,7 @@ func _on_volume_value_changed(value: float) -> void:
 	volume_percentage_label.text = ("%3d" % value) + "%"
 	AudioServer.set_bus_volume_db(
 		AudioServer.get_bus_index(&"Master"),
-		-200 if value == 0.0 else (value * 0.5) - 50,
+		-200.0 if value == 0.0 else (value * 0.5) - 50,
 	)
 
 

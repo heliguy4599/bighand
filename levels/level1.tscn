@@ -29,6 +29,7 @@ size = Vector2(678, 158)
 
 [node name="Level1" type="StaticBody2D"]
 script = ExtResource("1_ua5ty")
+time_bonus_threshold_seconds = 30.0
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_sjb42")]
 enable_camera_movement = false
@@ -88,3 +89,5 @@ shape = SubResource("WorldBoundaryShape2D_61w3m")
 
 [node name="WinScreen" parent="." instance=ExtResource("5_61w3m")]
 visible = false
+
+[connection signal="car_spawned" from="CarSpawnArea" to="." method="_on_car_spawned"]

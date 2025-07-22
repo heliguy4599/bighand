@@ -24,8 +24,8 @@ var is_visually_grabbed := false
 
 
 func _ready() -> void:
-	laregest_pickup_area.body_exited.connect(func(body):
-		if body == grabbed_object:
+	laregest_pickup_area.body_exited.connect(func(exited_body: Node2D) -> void:
+		if exited_body == grabbed_object:
 			ungrab()
 	)
 
@@ -38,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			ungrab()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var desired_speed := input * SPEED
 	var effective_mass := mass
@@ -63,17 +63,17 @@ func determine_grabbable_object() -> Pickupable:
 		if bodies.is_empty():
 			continue
 
-		for body in bodies:
-			if not body is Pickupable:
+		for overlapping_body in bodies:
+			if not overlapping_body is Pickupable:
 				continue
 
-			body.modulate = Color(1, 0.621, 0.621)
-			return body
+			overlapping_body.modulate = Color(1, 0.621, 0.621)
+			return overlapping_body
 
 	return null
 
 
-func grab():
+func grab() -> void:
 	if to_be_grabbed == null:
 		grab_and_miss()
 		return
@@ -87,7 +87,7 @@ func grab():
 	set_visual_grab(true)
 
 
-func ungrab():
+func ungrab() -> void:
 	if grabbed_object == null:
 		return
 
@@ -100,14 +100,14 @@ func ungrab():
 	set_visual_grab(false)
 
 
-func set_visual_grab(is_grabbed: bool):
+func set_visual_grab(is_grabbed: bool) -> void:
 	is_visually_grabbed = is_grabbed
 	hand_open_back.visible = not is_grabbed
 	hand_open_front.visible = not is_grabbed
 	hand_closed_front.visible = is_grabbed
 
 
-func grab_and_miss():
+func grab_and_miss() -> void:
 	set_visual_grab(true)
 	await get_tree().create_timer(0.2).timeout
 	set_visual_grab(false)

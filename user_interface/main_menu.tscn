@@ -29,7 +29,6 @@ script = ExtResource("2_xqlja")
 metadata/_custom_type_script = "uid://dvew0y2ls55ta"
 
 [node name="MainScreen" type="Control" parent="ViewSwitcher"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,6 +68,7 @@ layout_mode = 2
 text = "GO RUN LEAVE"
 
 [node name="ConfigScreen" parent="ViewSwitcher" instance=ExtResource("3_ejyv4")]
+visible = false
 layout_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

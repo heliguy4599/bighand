@@ -21,7 +21,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	on_ground = false
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if on_ground:
 		if linear_velocity.x > speed:
 			apply_central_force(Vector2(-accel * mass, 0))

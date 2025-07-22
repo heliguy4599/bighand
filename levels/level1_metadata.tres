@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelMetadata" load_steps=2 format=3 uid="uid://b1oqisfn8qjs4"]
+
+[ext_resource type="Script" uid="uid://bho64yiq6qouw" path="res://levels/level_metadata.gd" id="1_dkwm2"]
+
+[resource]
+script = ExtResource("1_dkwm2")
+title = "Level 1 :3"
+number = 1
+scene_path = "uid://druogfrh0kf5n"
+metadata/_custom_type_script = "uid://bho64yiq6qouw"

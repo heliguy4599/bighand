@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://mf3cx12ap4sf"]
+
+[ext_resource type="Script" uid="uid://cv2qlkey4lnkl" path="res://levels/level_select.gd" id="1_mk87e"]
+[ext_resource type="PackedScene" uid="uid://cs0qvu11a4wfu" path="res://player_container.tscn" id="2_ygvyp"]
+[ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="3_f7cvi"]
+[ext_resource type="PackedScene" uid="uid://k57pd68jk5gr" path="res://levels/selectable_level.tscn" id="4_je4e8"]
+[ext_resource type="Resource" uid="uid://b1oqisfn8qjs4" path="res://levels/level1_metadata.tres" id="5_qtfbl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_je4e8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtfbl"]
+size = Vector2(240, 30)
+
+[node name="LevelSelect" type="StaticBody2D"]
+script = ExtResource("1_mk87e")
+
+[node name="PlayerContainer" parent="." instance=ExtResource("2_ygvyp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 237)
+shape = SubResource("WorldBoundaryShape2D_je4e8")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(0, 64)
+scale = Vector2(117.152, 1)
+texture = ExtResource("3_f7cvi")
+
+[node name="SelectableLevel" parent="." instance=ExtResource("4_je4e8")]
+position = Vector2(-445, 162)
+level_metadata = ExtResource("5_qtfbl")
+
+[node name="LevelDropArea" type="Area2D" parent="."]
+position = Vector2(452, 222)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelDropArea"]
+shape = SubResource("RectangleShape2D_qtfbl")
+
+[node name="ColorRect" type="ColorRect" parent="LevelDropArea"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -15.0
+offset_right = 120.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[connection signal="body_entered" from="LevelDropArea" to="." method="_on_level_drop_body_entered"]
