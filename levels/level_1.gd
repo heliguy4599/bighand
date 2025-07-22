@@ -5,7 +5,6 @@ const TOTAL_CARS := 3
 
 @onready var car_win_area: Area2D = $CarWinArea
 @onready var car_spawn_area: CarSpawnArea = $CarSpawnArea
-@onready var win_screen: WinScreen = $WinScreen
 @onready var car_delete_area: Area2D = $CarDeleteArea
 
 var cars_saved := 0

@@ -9,6 +9,7 @@ func _ready() -> void:
 	var main_menu: MainMenu = MAIN_MENU_SCENE.instantiate()
 	main_menu.game_start_request.connect(_on_game_start)
 	add_child(main_menu)
+	print(Utils.prettify_time(62.2))
 
 
 func _on_game_start() -> void:

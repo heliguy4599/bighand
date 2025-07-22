@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://druogfrh0kf5n"]
+[gd_scene load_steps=13 format=3 uid="uid://druogfrh0kf5n"]
 
 [ext_resource type="PackedScene" uid="uid://cs0qvu11a4wfu" path="res://player_container.tscn" id="1_sjb42"]
 [ext_resource type="Script" uid="uid://bvfluqud2dj8q" path="res://levels/level_1.gd" id="1_ua5ty"]
 [ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="2_pdtm5"]
 [ext_resource type="PackedScene" uid="uid://b1s3wnnp4k0f0" path="res://car_spawn_area.tscn" id="4_ua5ty"]
-[ext_resource type="PackedScene" uid="uid://dreubwxs62ntr" path="res://win_screen.tscn" id="5_61w3m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjb42"]
 size = Vector2(678, 305)
@@ -86,8 +85,5 @@ position = Vector2(0, 442)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarDeleteArea"]
 shape = SubResource("WorldBoundaryShape2D_61w3m")
-
-[node name="WinScreen" parent="." instance=ExtResource("5_61w3m")]
-visible = false
 
 [connection signal="car_spawned" from="CarSpawnArea" to="." method="_on_car_spawned"]

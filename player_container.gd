@@ -7,6 +7,17 @@ const CAMERA_MOVEMENT_STIFFNESS := 3.0
 
 @onready var camera: Camera2D = $Camera2D
 @onready var hand: Hand = $Hand
+@onready var player_body: Body = $Body
+
+
+func set_hand_position(hand_position: Vector2) -> void:
+	var hand_offset := player_body.global_position - hand.global_position
+	hand.global_position = hand_position
+	player_body.teleport(hand_position + hand_offset)
+
+
+func _ready() -> void:
+	camera.make_current()
 
 
 func _physics_process(delta: float) -> void:

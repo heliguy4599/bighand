@@ -1,7 +1,6 @@
 class_name Body
 extends RigidBody2D
 
-
 const MAX_EYE_LOOK := 100.0
 const MAX_EYE_MOVEMENT := 8.0
 
@@ -20,6 +19,11 @@ var is_character_moving: bool:
 		is_character_moving = value
 		if value:
 			bobbing_player.play(&"bobbing")
+
+
+func teleport(new_position: Vector2) -> void:
+	global_position = new_position
+	previous_x = global_position.x
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:

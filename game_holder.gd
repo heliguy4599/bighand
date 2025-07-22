@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func _remove_all_children() -> void:
 	for child in get_children():
-		camera_disable_recursive(child)
 		child.queue_free()
 
 
@@ -24,15 +23,8 @@ func start_level(metadata: LevelMetadata) -> void:
 	add_child.call_deferred(level_instance)
 
 
-func camera_disable_recursive(node: Node) -> void:
-	if node is Camera2D:
-		node.enabled = false
-	for child in node.get_children():
-		camera_disable_recursive(child)
-
-
 func show_end_screen(results: LevelResults) -> void:
-	print(results)
 	var end_screen_instance: WinScreen = END_SCREEN_SCENE.instantiate()
 	_remove_all_children()
 	add_child.call_deferred(end_screen_instance)
+	end_screen_instance.display_results(results)

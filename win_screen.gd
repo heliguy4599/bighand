@@ -1,16 +1,21 @@
 class_name WinScreen
-extends CanvasLayer
+extends StaticBody2D
 
-@onready var cars_saved_label: Label = $VBoxContainer/cars_saved_label
-@onready var cars_lost_label: Label = $VBoxContainer/cars_lost_label
+@export var player_container: PlayerContainer
+@export var hand_start_marker: Marker2D
+@export var vbox: VBoxContainer
+
+#@export var title_label: Label
+@export var time_taken_label: Label
+@export var speedy_threshold_label: Label
+@export var passing_label: Label
+@export var perfect_label: Label
+@export var speedy_label: Label
 
 
-var cars_saved: int = 0:
-	set(value):
-		cars_saved_label.text = "Cars saved: %s" % value
-		cars_saved = value
+func _ready() -> void:
+	player_container.set_hand_position(hand_start_marker.global_position)
 
-var cars_lost: int = 0:
-	set(value):
-		cars_lost_label.text = "Cars lost: %s" % value
-		cars_lost = value
+
+func display_results(results: LevelResults) -> void:
+	time_taken_label.text = "Time Taken: " + Utils.prettify_time(results.time)
