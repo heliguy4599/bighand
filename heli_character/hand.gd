@@ -13,6 +13,7 @@ const GRABBING_RANGE := 200.0
 var grabbed_object: Pickupable = null
 var to_be_grabbed: Pickupable = null
 var is_visually_grabbed := false
+var _grabbed_object_gravity := 0.0
 
 
 @onready var pickup_area_group: Node2D = $PickupAreaGroup
@@ -79,6 +80,7 @@ func grab() -> void:
 		return
 
 	grabbed_object = to_be_grabbed
+	_grabbed_object_gravity = grabbed_object.gravity_scale
 	grabbed_object.gravity_scale = 0.0
 	for joint in joints:
 		joint.node_b = grabbed_object.get_path()
@@ -95,7 +97,7 @@ func ungrab() -> void:
 		joint.node_b = get_path()
 
 	grabbed_object.ungrab()
-	grabbed_object.gravity_scale = 1.0
+	grabbed_object.gravity_scale = _grabbed_object_gravity
 	grabbed_object = null
 	set_visual_grab(false)
 

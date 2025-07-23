@@ -1,12 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://dreubwxs62ntr"]
+[gd_scene load_steps=9 format=3 uid="uid://dreubwxs62ntr"]
 
 [ext_resource type="Script" uid="uid://4i6djrk8l0nf" path="res://win_screen.gd" id="1_l2arl"]
 [ext_resource type="PackedScene" uid="uid://cs0qvu11a4wfu" path="res://player_container.tscn" id="2_wmwda"]
+[ext_resource type="Script" uid="uid://dndpmlen81kuq" path="res://pickupable.gd" id="3_1txte"]
+[ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="3_l5t5q"]
 
-[node name="WinScreen" type="StaticBody2D" node_paths=PackedStringArray("player_container", "hand_start_marker", "vbox", "time_taken_label", "speedy_threshold_label", "passing_label", "perfect_label", "speedy_label")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmwda"]
+size = Vector2(14, 154)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1txte"]
+radius = 37.2156
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1txte"]
+size = Vector2(244, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26557"]
+size = Vector2(244, 42)
+
+[node name="WinScreen" type="StaticBody2D" node_paths=PackedStringArray("player_container", "hand_start_marker", "quit_area", "next_level_area", "lever_handle", "vbox", "time_taken_label", "speedy_threshold_label", "passing_label", "perfect_label", "speedy_label")]
 script = ExtResource("1_l2arl")
 player_container = NodePath("PlayerContainer")
 hand_start_marker = NodePath("HandStartMarker")
+quit_area = NodePath("Lever/RestartArea")
+next_level_area = NodePath("Lever/NextLevelArea")
+lever_handle = NodePath("Lever/LeverHandle")
 vbox = NodePath("CanvasLayer/VBoxContainer")
 time_taken_label = NodePath("CanvasLayer/VBoxContainer/TimeTakenLabel")
 speedy_threshold_label = NodePath("CanvasLayer/VBoxContainer/SpeedyThresholdLabel")
@@ -45,12 +62,111 @@ layout_mode = 2
 
 [node name="PassingLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
+text = "Bare minimum met!"
 
 [node name="PerfectLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
+text = "A perfect run!"
 
 [node name="SpeedyLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
+text = "Wow, so fast!"
 
 [node name="HandStartMarker" type="Marker2D" parent="."]
 position = Vector2(-319, 0)
+
+[node name="Lever" type="Node2D" parent="."]
+position = Vector2(-319, 276)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Lever"]
+node_a = NodePath("../LeverStick")
+node_b = NodePath("../..")
+
+[node name="LeverStick" type="RigidBody2D" parent="Lever"]
+position = Vector2(0, -72)
+mass = 200.0
+gravity_scale = 0.0
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Lever/LeverStick"]
+position = Vector2(0, -112)
+node_a = NodePath("../../LeverHandle")
+node_b = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever/LeverStick"]
+shape = SubResource("RectangleShape2D_wmwda")
+
+[node name="ColorRect" type="ColorRect" parent="Lever/LeverStick"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -77.0
+offset_right = 7.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.446947, 0.217533, 0.00943993, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="LeverHandle" type="RigidBody2D" parent="Lever"]
+position = Vector2(0, -184)
+mass = 200.0
+gravity_scale = -1.0
+lock_rotation = true
+linear_damp = 3.0
+script = ExtResource("3_1txte")
+metadata/_custom_type_script = "uid://dndpmlen81kuq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever/LeverHandle"]
+shape = SubResource("CircleShape2D_1txte")
+
+[node name="Sprite2D" type="Sprite2D" parent="Lever/LeverHandle"]
+scale = Vector2(0.578125, 0.578125)
+texture = ExtResource("3_l5t5q")
+
+[node name="RestartArea" type="Area2D" parent="Lever"]
+position = Vector2(-122, -21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever/RestartArea"]
+shape = SubResource("RectangleShape2D_1txte")
+
+[node name="Label" type="Label" parent="Lever/RestartArea"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Reshart"
+horizontal_alignment = 1
+
+[node name="NextLevelArea" type="Area2D" parent="Lever"]
+position = Vector2(122, -21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever/NextLevelArea"]
+shape = SubResource("RectangleShape2D_26557")
+
+[node name="Label" type="Label" parent="Lever/NextLevelArea"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Next Level"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Lever/RestartArea" to="." method="_on_restart_area_body_entered"]
+[connection signal="body_entered" from="Lever/NextLevelArea" to="." method="_on_next_level_area_body_entered"]

@@ -12,7 +12,7 @@ func is_broken() -> bool:
 func _ready() -> void:
 	assert(durability >= -1, "Pickupable.durability cannot be lower than -1")
 	assert(
-		durability != -1 and durability >= 0,
+		durability == -1 or durability >= 0,
 		"Pickupable.durability cannot be a negative non-whole-number",
 	)
 
