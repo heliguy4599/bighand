@@ -3,7 +3,7 @@ extends Area2D
 
 signal car_spawned(car: Car)
 
-const CAR_SCENE: PackedScene = preload("res://car.tscn")
+const CAR_SCENE: PackedScene = preload("res://car/car.tscn")
 
 @export var marker: Marker2D = null
 @export var total_cars_to_spawn: int = -1

@@ -1,6 +1,7 @@
 class_name Level
 extends StaticBody2D
 
+@warning_ignore("unused_signal")
 signal ended(results: LevelResults)
 
 @onready var time_started := Time.get_unix_time_from_system()

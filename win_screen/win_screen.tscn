@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dreubwxs62ntr"]
+[gd_scene load_steps=10 format=3 uid="uid://dreubwxs62ntr"]
 
-[ext_resource type="Script" uid="uid://4i6djrk8l0nf" path="res://win_screen.gd" id="1_l2arl"]
+[ext_resource type="Script" uid="uid://4i6djrk8l0nf" path="res://win_screen/win_screen.gd" id="1_l2arl"]
 [ext_resource type="PackedScene" uid="uid://cs0qvu11a4wfu" path="res://player_container.tscn" id="2_wmwda"]
 [ext_resource type="Script" uid="uid://dndpmlen81kuq" path="res://pickupable.gd" id="3_1txte"]
 [ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="3_l5t5q"]
@@ -16,6 +16,9 @@ size = Vector2(244, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26557"]
 size = Vector2(244, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_luvg0"]
+size = Vector2(488, 20)
 
 [node name="WinScreen" type="StaticBody2D" node_paths=PackedStringArray("player_container", "hand_start_marker", "quit_area", "next_level_area", "lever_handle", "vbox", "time_taken_label", "speedy_threshold_label", "passing_label", "perfect_label", "speedy_label")]
 script = ExtResource("1_l2arl")
@@ -167,6 +170,12 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Next Level"
 horizontal_alignment = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Lever"]
+position = Vector2(0, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever/StaticBody2D"]
+shape = SubResource("RectangleShape2D_luvg0")
 
 [connection signal="body_entered" from="Lever/RestartArea" to="." method="_on_restart_area_body_entered"]
 [connection signal="body_entered" from="Lever/NextLevelArea" to="." method="_on_next_level_area_body_entered"]

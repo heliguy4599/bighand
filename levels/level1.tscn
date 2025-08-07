@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cs0qvu11a4wfu" path="res://player_container.tscn" id="1_sjb42"]
 [ext_resource type="Script" uid="uid://bvfluqud2dj8q" path="res://levels/level_1.gd" id="1_ua5ty"]
 [ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="2_pdtm5"]
-[ext_resource type="PackedScene" uid="uid://b1s3wnnp4k0f0" path="res://car_spawn_area.tscn" id="4_ua5ty"]
+[ext_resource type="PackedScene" uid="uid://b1s3wnnp4k0f0" path="res://car/car_spawn_area.tscn" id="4_ua5ty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjb42"]
 size = Vector2(678, 305)

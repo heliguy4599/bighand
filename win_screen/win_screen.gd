@@ -11,7 +11,6 @@ signal do_restart
 @export var lever_handle: Pickupable
 
 @export var vbox: VBoxContainer
-#@export var title_label: Label
 @export var time_taken_label: Label
 @export var speedy_threshold_label: Label
 @export var passing_label: Label

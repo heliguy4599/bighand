@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfc0x53i3ha6c"]
 
-[ext_resource type="Script" uid="uid://ym7gtrrap55s" path="res://car.gd" id="1_ioxu0"]
-[ext_resource type="Texture2D" uid="uid://b5igvysjllbfj" path="res://dacar.png" id="2_1s6m6"]
+[ext_resource type="Script" uid="uid://ym7gtrrap55s" path="res://car/car.gd" id="1_dxy33"]
+[ext_resource type="Texture2D" uid="uid://b5igvysjllbfj" path="res://car/dacar.png" id="2_hkabp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_38lyy"]
 friction = 0.0
@@ -15,14 +15,14 @@ mass = 200.0
 physics_material_override = SubResource("PhysicsMaterial_38lyy")
 contact_monitor = true
 max_contacts_reported = 999
-script = ExtResource("1_ioxu0")
+script = ExtResource("1_dxy33")
 durability = 18000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -26.7655)
 rotation = -0.0151993
 scale = Vector2(0.406286, 0.406286)
-texture = ExtResource("2_1s6m6")
+texture = ExtResource("2_hkabp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -22.7655)
