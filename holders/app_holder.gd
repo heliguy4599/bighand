@@ -2,7 +2,7 @@ class_name AppHolder
 extends Node
 
 const MAIN_MENU_SCENE: PackedScene = preload("res://user_interface/main_menu.tscn")
-const GAME_HOLDER_SCENE: PackedScene = preload("res://game_holder.tscn")
+const GAME_HOLDER_SCENE: PackedScene = preload("res://holders/game_holder.tscn")
 
 
 func _ready() -> void:

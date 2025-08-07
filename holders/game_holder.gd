@@ -1,8 +1,12 @@
 class_name GameHolder
 extends Node
 
-const END_SCREEN_SCENE: PackedScene = preload("res://win_screen/win_screen.tscn")
-const LEVEL_SELECT_SCENE: PackedScene = preload("res://levels/level_select.tscn")
+const END_SCREEN_SCENE: PackedScene = preload(
+	"res://win_screen/win_screen.tscn"
+)
+const LEVEL_SELECT_SCENE: PackedScene = preload(
+	"res://levels/level_select/level_select.tscn"
+)
 
 var current_level_metadata: LevelMetadata
 

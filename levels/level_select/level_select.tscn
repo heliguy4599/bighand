@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://mf3cx12ap4sf"]
 
-[ext_resource type="Script" uid="uid://cv2qlkey4lnkl" path="res://levels/level_select.gd" id="1_mk87e"]
-[ext_resource type="PackedScene" uid="uid://cs0qvu11a4wfu" path="res://player_container.tscn" id="2_ygvyp"]
+[ext_resource type="Script" uid="uid://cv2qlkey4lnkl" path="res://levels/level_select/level_select.gd" id="1_mk87e"]
+[ext_resource type="PackedScene" uid="uid://cs0qvu11a4wfu" path="res://heli_character/player_container.tscn" id="2_ygvyp"]
 [ext_resource type="Texture2D" uid="uid://w0f6at6yyjom" path="res://icon.svg" id="3_f7cvi"]
-[ext_resource type="PackedScene" uid="uid://k57pd68jk5gr" path="res://levels/selectable_level.tscn" id="4_je4e8"]
-[ext_resource type="Resource" uid="uid://b1oqisfn8qjs4" path="res://levels/level1_metadata.tres" id="5_qtfbl"]
+[ext_resource type="PackedScene" uid="uid://k57pd68jk5gr" path="res://levels/level_select/selectable_level.tscn" id="4_je4e8"]
+[ext_resource type="Resource" uid="uid://b1oqisfn8qjs4" path="res://levels/level1/level1_metadata.tres" id="5_qtfbl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_je4e8"]
 

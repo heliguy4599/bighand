@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://crwhnljt1t44k"
-path="res://.godot/imported/size_boarder.wav-f4fb1598c6436e0f22087f1e997884b2.sample"
+path="res://.godot/imported/size_boarder.wav-5ce78f0999d0ac8f473cf3fb24039ca2.sample"
 
 [deps]
 
-source_file="res://levels/size_boarder.wav"
-dest_files=["res://.godot/imported/size_boarder.wav-f4fb1598c6436e0f22087f1e997884b2.sample"]
+source_file="res://size_boarder.wav"
+dest_files=["res://.godot/imported/size_boarder.wav-5ce78f0999d0ac8f473cf3fb24039ca2.sample"]
 
 [params]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b00ophucmbd5l"]
 
 [ext_resource type="Script" uid="uid://cxjnubtica00e" path="res://user_interface/main_menu.gd" id="1_1aipp"]
-[ext_resource type="Script" uid="uid://dvew0y2ls55ta" path="res://levels/view_switcher.gd" id="2_xqlja"]
-[ext_resource type="PackedScene" uid="uid://djbky7jfs26om" path="res://config_screen.tscn" id="3_ejyv4"]
-[ext_resource type="AudioStream" uid="uid://crwhnljt1t44k" path="res://levels/size_boarder.wav" id="4_l8n0t"]
+[ext_resource type="Script" uid="uid://dvew0y2ls55ta" path="res://user_interface/view_switcher.gd" id="2_xqlja"]
+[ext_resource type="PackedScene" uid="uid://djbky7jfs26om" path="res://user_interface/config_screen.tscn" id="3_ejyv4"]
+[ext_resource type="AudioStream" uid="uid://crwhnljt1t44k" path="res://size_boarder.wav" id="4_l8n0t"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("start_button", "config_button", "quit_button", "view_switcher")]
 layout_mode = 3
